@@ -1,0 +1,18 @@
+command:
+  ansible-playbook --version:
+    exit-status: 0
+    stdout:
+    - /^ansible-playbook 2*/
+    - config file = /etc/ansible/ansible.cfg
+    - configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+    - ansible python module location = /usr/lib/python2.7/site-packages/ansible
+    - executable location = /usr/bin/ansible-playbook
+    - python version
+    stderr: []
+    timeout: 10000
+  aws --version:
+    exit-status: 0
+    stdout:
+    - aws-cli/2
+    stderr: []
+    timeout: 10000
