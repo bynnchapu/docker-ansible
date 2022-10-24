@@ -1,8 +1,11 @@
 name: Build Docker container for AmazonLinux2
 on:
   push:
-  #schedule:
-  #  - cron: '35 5 */3 * *'
+    paths:
+      - "AmazonLinux2/**"
+      - ".github/workflows/docker-buildpush-amazonlinux2.yaml"
+  schedule:
+    - cron: '35 5 */3 * *'
 
 jobs:
   build-for-test:
