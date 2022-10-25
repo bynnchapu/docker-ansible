@@ -1,6 +1,11 @@
 name: Build Docker container for AmazonLinux2
 on:
+  pull_request:
+    branches:
+      - "main"
   push:
+    branches:
+      - "main"
     paths:
       - "AmazonLinux2/**"
       - ".github/workflows/docker-buildpush-amazonlinux2.yaml"
