@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get short tag
+        id: tag_info
+        run: echo ::set-output name=SHORTTAG::$(git rev-parse --short HEAD)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2.1.0
       - name: Set up Docker Buildx
@@ -32,20 +35,23 @@ jobs:
         with:
           context: AmazonLinux2
           push: true
-          tags: bynnchapu/docker-ansible-test:amazonlinux2
+          tags: bynnchapu/docker-ansible-test:amazonlinux2,bynnchapu/docker-ansible-test:amazonlinux2-${{ steps.get_version.outputs.SHORTTAG }}
   test:
     runs-on: ubuntu-latest
     needs: build-for-test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get short tag
+        id: tag_info
+        run: echo ::set-output name=SHORTTAG::$(git rev-parse --short HEAD)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2.1.0
       - name: Install Goss
         uses: e1himself/goss-installation-action@v1.0.3
       - name: Start test image
         working-directory: ./test/AmazonLinux2/
-        run: dgoss run -it bynnchapu/docker-ansible-test:amazonlinux2
+        run: dgoss run -it bynnchapu/docker-ansible-test:amazonlinux2-${{ steps.get_version.outputs.SHORTTAG }}
   build-for-push:
     runs-on: ubuntu-latest
     needs: test
@@ -53,6 +59,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get short tag
+        id: tag_info
+        run: echo ::set-output name=SHORTTAG::$(git rev-parse --short HEAD)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2.1.0
       - name: Set up Docker Buildx
@@ -67,4 +76,4 @@ jobs:
         with:
           context: AmazonLinux2
           push: true
-          tags: bynnchapu/docker-ansible:amazonlinux2
+          tags: bynnchapu/docker-ansible:amazonlinux2,bynnchapu/docker-ansible:amazonlinux2-${{ steps.get_version.outputs.SHORTTAG }}
