@@ -1,0 +1,21 @@
+command:
+  ansible-playbook --version:
+    exit-status: 0
+    stdout:
+    - /^ansible-playbook \[core 2.*.*\]/
+    - config file = None
+    - configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+    - ansible python module location = /usr/local/lib/python3.10/dist-packages/ansible
+    - ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+    - executable location = /usr/local/bin/ansible-playbook
+    - python version
+    - jinja version
+    - libyaml = True
+    stderr: []
+    timeout: 10000
+  aws --version:
+    exit-status: 0
+    stdout:
+    - aws-cli/1
+    stderr: []
+    timeout: 10000
