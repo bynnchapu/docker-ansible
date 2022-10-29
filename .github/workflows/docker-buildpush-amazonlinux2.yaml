@@ -3,6 +3,9 @@ on:
   pull_request:
     branches:
       - "main"
+    paths:
+      - "AmazonLinux2/**"
+      - ".github/workflows/docker-buildpush-amazonlinux2.yaml"
   push:
     branches:
       - "main"
