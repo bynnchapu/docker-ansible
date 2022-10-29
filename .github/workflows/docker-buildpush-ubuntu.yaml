@@ -3,6 +3,9 @@ on:
   pull_request:
     branches:
       - "main"
+    paths:
+      - "Ubuntu/**"
+      - ".github/workflows/docker-buildpush-ubuntu.yaml"
   push:
     branches:
       - "main"
